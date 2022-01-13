@@ -4,11 +4,14 @@ let testMap = new Map();
 
 let arr = [];
 let uniqueArr = [];
+let basesArr = [];
 
 console.log('one.js is alive');
 
 window.onload = () => {
     console.log('Window loaded');
+
+    const br = document.createElement('br');
 
     const h2 = document.createElement('h2');
     h2.textContent = "One";
@@ -19,14 +22,30 @@ window.onload = () => {
     document.getElementById('content').appendChild(input);
 
     const btnAdd = document.createElement('button');
-    btnAdd.innerHTML = 'Add data';
+    btnAdd.innerHTML = 'Add Data';
     btnAdd.addEventListener('click', functionBtnAddClick)
     document.getElementById('content').appendChild(btnAdd);
 
     const btnCalc = document.createElement('button');
-    btnCalc.innerHTML = 'Calculate';
+    btnCalc.innerHTML = 'Show cars';
     btnCalc.addEventListener('click', functionBtnCalcClick)
     document.getElementById('content').appendChild(btnCalc);
+
+    document.getElementById('content').appendChild(br);
+
+    const input2 = document.createElement('input');
+    input2.id = 'inputBases';
+    document.getElementById('content').appendChild(input2);
+
+    const btnBase = document.createElement('button');
+    btnBase.innerHTML = 'Add Base';
+    btnBase.addEventListener('click', functionBtnBaseClick)
+    document.getElementById('content').appendChild(btnBase);
+
+    const btnCalc2 = document.createElement('button');
+    btnCalc2.innerHTML = 'Calculate bases';
+    btnCalc2.addEventListener('click', functionBtnCalc2Click)
+    document.getElementById('content').appendChild(btnCalc2);
 
     const divCalc = document.createElement('div');
     divCalc.id = 'divCalc';
@@ -71,6 +90,37 @@ const functionBtnCalcClick = () => {
     uniqueArr.forEach(element => {
         const li = document.createElement('li');
         li.textContent = 'There are ' + element.counter + ' ' + element.make;
+        document.getElementById('divCalc').appendChild(li);
+    })
+}
+
+const functionBtnBaseClick = () => {
+
+    console.log('uniqueArr');
+
+    const currentValue = document.getElementById('inputBases').value;
+
+    const tempArr = currentValue.split(' ');
+
+    tempArr.forEach((element, counter) => {
+        element *= element;
+        basesArr.push(parseInt(element));
+    });
+
+    basesArr.sort((a, b) => a - b);
+
+    console.log(basesArr);
+}
+
+const functionBtnCalc2Click = () => {
+
+    console.log(uniqueArr);
+
+    document.getElementById('divCalc').innerHTML = null;
+
+    basesArr.forEach(element => {
+        const li = document.createElement('li');
+        li.textContent = `${Math.sqrt(element)} (${element})`;
         document.getElementById('divCalc').appendChild(li);
     })
 }
