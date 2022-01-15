@@ -25,21 +25,21 @@ const functionBtnClickAddCar = () => {
 
     arrAllCars.push(currentValue);
 
-    // arrUniqueCars = [...new Set(arrAllCars.map((item) => item))];
+    arrUniqueCars = [];
 
-    let temp = arrUniqueCars.find(element => element.make == currentValue);
+    let arrTemp = [...new Set(arrAllCars.map(item => item))];
 
-    if (temp == undefined) {
-        arrUniqueCars.push({ "make": currentValue, "counter": 0 });
-    }
+    arrTemp.forEach(element => {
+        arrUniqueCars.push({ "make": element, "counter": 0 });
+    });
 
-    arrUniqueCars.forEach(element2 => {
+    arrUniqueCars.forEach(element1 => {
         let counterUnique = 1;
 
-        arrAllCars.forEach(element1 => {
+        arrAllCars.forEach(element2 => {
 
-            if (element1 == element2.make) {
-                element2.counter = counterUnique;
+            if (element2 == element1.make) {
+                element1.counter = counterUnique;
                 counterUnique++;
             }
         });
@@ -53,11 +53,12 @@ const functionBtnClickAddBases = () => {
     const tempArr = currentValue.split(' ');
 
     tempArr.forEach(element => {
+
         element *= element;
         arrBases.push(parseInt(element));
     });
 
-    arrBases.sort((a, b) => a - b);
+    arrBases.sort((first, second) => first - second);
 }
 
 export { arrAllCars, arrBases, arrUniqueCars };
