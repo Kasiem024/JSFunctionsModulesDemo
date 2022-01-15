@@ -61,4 +61,4 @@ const functionBtnClickAddBases = () => {
     arrBases.sort((first, second) => first - second);
 }
 
-export { arrAllCars, arrBases, arrUniqueCars };
+export { arrBases, arrUniqueCars };
