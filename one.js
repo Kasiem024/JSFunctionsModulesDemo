@@ -1,5 +1,7 @@
 'use strict';
 
+import { funcBtnClickShowCars, functionBtnClickCalcBases } from './calculate.js';
+
 let arrAllCars = [],
     arrUniqueCars = [],
     arrBases = [];
@@ -44,24 +46,13 @@ const functionBtnClickAddCar = () => {
     });
 }
 
-const funcBtnClickShowCars = () => {
-
-    document.getElementById('divShowCars').innerHTML = null;
-
-    arrUniqueCars.forEach(element => {
-        const li = document.createElement('li');
-        li.textContent = `There are ${element.counter} ${element.make}`;
-        document.getElementById('divShowCars').appendChild(li);
-    });
-}
-
 const functionBtnClickAddBases = () => {
 
     const currentValue = document.getElementById('inputBases').value;
 
     const tempArr = currentValue.split(' ');
 
-    tempArr.forEach((element, counter) => {
+    tempArr.forEach(element => {
         element *= element;
         arrBases.push(parseInt(element));
     });
@@ -69,13 +60,4 @@ const functionBtnClickAddBases = () => {
     arrBases.sort((a, b) => a - b);
 }
 
-const functionBtnClickCalcBases = () => {
-
-    document.getElementById('divShowBases').innerHTML = null;
-
-    arrBases.forEach(element => {
-        const li = document.createElement('li');
-        li.textContent = `${Math.sqrt(element)} (${element})`;
-        document.getElementById('divShowBases').appendChild(li);
-    });
-}
+export { arrAllCars, arrBases, arrUniqueCars };
